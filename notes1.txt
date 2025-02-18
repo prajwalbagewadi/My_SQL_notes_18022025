@@ -1,0 +1,137 @@
+show databases; -- show data bases present.
+
+drop database company; -- remove database. 
+create database company; -- create database. 
+
+use company; -- use /open  database for operations.
+show tables; -- view tables in database
+
+
+-- create table 
+create table employees (id int primary key auto_increment,name varchar(100),age int,dept varchar(50),salary float);
+
+select * from employees; -- select all rows from employees
+
+-- insert rows / records
+insert into employees (name,age,dept,salary) values ("ram",30,"Infra",800000) ;
+insert into employees (name,age,dept,salary) values ("rishi",26,"cloud",600000) ;
+insert into employees (name,age,dept,salary) values ("krutika",27,"SDE",500000) ;
+select * from employees;
+
+-- update records
+update employees set dept = "cloud" where dept = "Infra";  
+select * from employees;
+
+-- delete
+delete from employees where name = "rishi";
+select * from employees;
+
+-- alter tables 
+alter table employees add column email varchar(50);
+select * from employees;
+
+alter table employees drop column email;
+select * from employees;
+
+alter table employees modify column salary float;
+select * from employees;
+
+
+-- Constraints
+
+
+
+
+/*
+SQL (Structured Query Language) is used to manage and manipulate relational databases. It allows users to create, read, update, and delete data using queries.  
+
+Here are some key SQL topics:  
+
+### **1. Basic SQL Commands**  
+- **`SELECT`** – Retrieve data from a table  
+  ```sql
+  SELECT * FROM employees;
+  SELECT name, salary FROM employees WHERE department = 'IT';
+  ```
+- **`INSERT`** – Add new data  
+  ```sql
+  INSERT INTO employees (name, age, department) VALUES ('John Doe', 30, 'HR');
+  ```
+- **`UPDATE`** – Modify existing data  
+  ```sql
+  UPDATE employees SET salary = 60000 WHERE name = 'John Doe';
+  ```
+- **`DELETE`** – Remove data  
+  ```sql
+  DELETE FROM employees WHERE name = 'John Doe';
+  ```
+
+### **2. Table Creation & Modification**  
+- **Create Table**  
+  ```sql
+  CREATE TABLE employees (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      name VARCHAR(100),
+      age INT,
+      department VARCHAR(50),
+      salary DECIMAL(10,2)
+  );
+  ```
+- **Alter Table (Modify Structure)**  
+  ```sql
+  ALTER TABLE employees ADD COLUMN email VARCHAR(100);
+  ALTER TABLE employees DROP COLUMN email;
+  ALTER TABLE employees MODIFY COLUMN salary FLOAT;
+  ```
+
+### **3. Constraints**  
+- `PRIMARY KEY`, `FOREIGN KEY`, `UNIQUE`, `CHECK`, `NOT NULL`, `DEFAULT`  
+  ```sql
+  CREATE TABLE departments (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      name VARCHAR(50) UNIQUE NOT NULL
+  );
+  ```
+
+### **4. Joins (Combining Data from Multiple Tables)**  
+- **INNER JOIN** (Returns matching records from both tables)  
+  ```sql
+  SELECT employees.name, departments.name 
+  FROM employees
+  INNER JOIN departments ON employees.department_id = departments.id;
+  ```
+- **LEFT JOIN** (Returns all records from the left table + matching records from the right)  
+  ```sql
+  SELECT employees.name, departments.name 
+  FROM employees
+  LEFT JOIN departments ON employees.department_id = departments.id;
+  ```
+- **RIGHT JOIN**, **FULL OUTER JOIN**, **SELF JOIN**  
+
+### **5. Aggregations & Grouping**  
+- `COUNT()`, `SUM()`, `AVG()`, `MIN()`, `MAX()`  
+  ```sql
+  SELECT department, AVG(salary) FROM employees GROUP BY department;
+  ```
+
+### **6. Subqueries & Common Table Expressions (CTEs)**  
+- **Subquery** (Nested query inside another query)  
+  ```sql
+  SELECT name FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);
+  ```
+- **CTE (Common Table Expression)**  
+  ```sql
+  WITH high_earners AS (
+      SELECT name, salary FROM employees WHERE salary > 70000
+  )
+  SELECT * FROM high_earners;
+  ```
+
+### **7. Indexing & Performance Optimization**  
+- **Creating an Index**  
+  ```sql
+  CREATE INDEX idx_employee_name ON employees(name);
+  ```
+
+🚀
+*/
